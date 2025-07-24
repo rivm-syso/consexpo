@@ -1,0 +1,33 @@
+Subject: Revert apply step size fix to be compiant with the original DotNumerics library.
+
+---
+ src/RIVM.ConsExpo.Model.Tests/OdeTests.cs         | 2 +-
+ src/RIVM.ConsExpo.Model/Computations/OdeSolver.cs | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/RIVM.ConsExpo.Model.Tests/OdeTests.cs b/src/RIVM.ConsExpo.Model.Tests/OdeTests.cs
+--- a/src/RIVM.ConsExpo.Model.Tests/OdeTests.cs
++++ b/src/RIVM.ConsExpo.Model.Tests/OdeTests.cs
+@@ -37,7 +37,7 @@ namespace RIVM.ConsExpo.Model.Tests
+             OdeFunction YDot = new OdeFunction(DerivativeWithExplicitDependencyOnIndependentVariable);
+             OdeJacobian Jac = new OdeJacobian(JacobianWithExplicitDependencyOnIndependentVariable);
+ 
+-            OdeImplicitRungeKutta5 rungeKutta = new OdeImplicitRungeKutta5(YDot, Jac, NumberOfProductLayers + 1, false);
++            OdeImplicitRungeKutta5 rungeKutta = new OdeImplicitRungeKutta5(YDot, Jac, NumberOfProductLayers + 1);
+ 
+             double[] y0 = new double[NumberOfProductLayers + 1];
+ 
+diff --git a/src/RIVM.ConsExpo.Model/Computations/OdeSolver.cs b/src/RIVM.ConsExpo.Model/Computations/OdeSolver.cs
+--- a/src/RIVM.ConsExpo.Model/Computations/OdeSolver.cs
++++ b/src/RIVM.ConsExpo.Model/Computations/OdeSolver.cs
+@@ -19,7 +19,7 @@ namespace RIVM.ConsExpo.Model.Computations
+ 
+             // OdeImplicitRungeKutta5 class is used to solve the diffusion-emission equations:
+             // If a new version of the radau5 library is imported, existing code will break, because the parameter 'applyStepSizeFix' was added by the ConsExpo team. This is intentional. If a new version is provided, carefully assess the necessity of fix and reapply in the radau5 code base.
+-            OdeImplicitRungeKutta5 rungeKutta = new OdeImplicitRungeKutta5(model, jacobian, numberOfEquations, applyStepSizeFix)
++            OdeImplicitRungeKutta5 rungeKutta = new OdeImplicitRungeKutta5(model, jacobian, numberOfEquations)
+             {
+                 ErrorToleranceType = ErrorToleranceEnum.Scalar,
+                 RelTol = relTol
+-- 
+

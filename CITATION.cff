@@ -1,0 +1,24 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: ConsExpo
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - name: RIVM
+    website: 'https://www.rivm.nl'
+    country: NL
+url: 'https://www.rivm.nl/en/consexpo'
+abstract: >-
+  ConsExpo is used within and outside Europe by governments,
+  institutes and industries to assess the exposure to
+  chemical substances from everyday consumer products.
+  ConsExpo can be used for the safety assessment of
+  industrial chemicals (REACH) and biocides.
+keywords:
+  - consumer-exposure
+license: EUPL-1.2
+version: 1.2.0

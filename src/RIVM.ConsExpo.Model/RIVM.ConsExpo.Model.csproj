@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{91DC33AC-AAB9-48F4-AF2B-BDC08BFBC4CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RIVM.ConsExpo.Model</RootNamespace>
+    <AssemblyName>RIVM.ConsExpo.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\RIVM.ConsExpo.Model.XML</DocumentationFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Acc|AnyCPU'">
+    <OutputPath>bin\Acc\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DotNumerics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNumerics.1.1\lib\DotNumerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Computations\NumericalRecipes.cs" />
+    <Compile Include="Computations\OdeSolver.cs" />
+    <Compile Include="Helpers\TestHelpers.cs" />
+    <Compile Include="Settings\ConfigSettings.cs" />
+    <Compile Include="Submodels\DermalAbsorptionBase.cs" />
+    <Compile Include="Submodels\DermalDiffusionThroughSkinForDiffusion.cs" />
+    <Compile Include="Submodels\DermalAbsorptionDiffusionThroughSkinForInstantApplication.cs" />
+    <Compile Include="Submodels\DermalExposureDiffusion.cs" />
+    <Compile Include="Submodels\ExposureBase.cs" />
+    <Compile Include="Computations\ExposureSpraySprayingComputations.cs" />
+    <Compile Include="Submodels\InhalationExposureEmissionFromSolidMaterials.cs" />
+    <Compile Include="Submodels\InhalationExposureSpraySpraying.cs" />
+    <Compile Include="Submodels\InhalationExposureSprayInstantaniousRelease.cs" />
+    <Compile Include="Computations\InhalationExposureInstantaniousReleaseBase.cs" />
+    <Compile Include="Submodels\InhalationExposureVapourEvaporation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Submodels\OralExposureBase.cs" />
+    <Compile Include="Submodels\InhalationExposureBase.cs" />
+    <Compile Include="Submodels\DermalExposureBase.cs" />
+    <Compile Include="Models\OralSimulation.cs" />
+    <Compile Include="Models\InhalationSimulation.cs" />
+    <Compile Include="Models\DermalSimulation.cs" />
+    <Compile Include="Models\Simulation.cs" />
+    <Compile Include="Submodels\OralExposureMigrationFromPackagingConstantRate.cs" />
+    <Compile Include="Submodels\OralExposureMigrationFromPackagingInstantRelease.cs" />
+    <Compile Include="Submodels\OralExposureSprayingNonRespirableMaterial.cs" />
+    <Compile Include="Submodels\OralExposureProductMouthing.cs" />
+    <Compile Include="Submodels\OralExposureConstantRate.cs" />
+    <Compile Include="Submodels\OralAbsorptionFraction.cs" />
+    <Compile Include="Submodels\DermalExposureMigration.cs" />
+    <Compile Include="Submodels\DermalExposureRubbingOff.cs" />
+    <Compile Include="Submodels\InhalationAbsorptionFraction.cs" />
+    <Compile Include="Submodels\DermalAbsorptionFraction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Submodels\DermalExposureConstantRate.cs" />
+    <Compile Include="Submodels\DermalExposureInstantApplication.cs" />
+    <Compile Include="Submodels\InhalationExposureVapourConstantRate.cs" />
+    <Compile Include="Submodels\OralExposureDirectIntake.cs" />
+    <Compile Include="Submodels\InhalationExposureVapourInstantaniousRelease.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RIVM.ConsExpo.DTO\RIVM.ConsExpo.DTO.csproj">
+      <Project>{0935fd0c-e51f-4687-97ff-d2ca8f9a5ba9}</Project>
+      <Name>RIVM.ConsExpo.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RIVM.ConsExpo.Model.Interfaces\RIVM.ConsExpo.Model.Interfaces.csproj">
+      <Project>{4e8f9362-92a0-4e3f-bcbd-c55c3dd4a15f}</Project>
+      <Name>RIVM.ConsExpo.Model.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>echo Substituting GIT Commit date and Revision number in AssemblyInfo.cs.
+"$(SolutionDir)SubGitRev" "$(ProjectDir)." "$(ProjectDir)Properties\AssemblyInfo.cst" "$(ProjectDir)Properties\AssemblyInfo.cs"</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

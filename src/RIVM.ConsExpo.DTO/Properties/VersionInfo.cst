@@ -1,0 +1,26 @@
+﻿// DO NOT CHANGE THE CONTENTS OF VersionInfo.cs. ONLY CHANGE VersionInfo.cst, AS IT WILL BE USED TO GENERATE VersionInfo.cs DURING THE PRE-BUILD EVENT!
+// See http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-subwcrev-keywords.html"
+
+namespace RIVM.ConsExpo.DTO.Properties
+{
+    /// <summary>
+    /// Stores compile time generated version info about the application. This information is based on Subversion metadata.
+    /// </summary>
+    public class VersionInfo
+    {
+        /// <summary>
+        /// The revision number
+        /// </summary>
+		public const int RevisionNumber = ${REV_COUNT};
+
+        /// <summary>
+        /// The build date
+        /// </summary>
+        public const string BuildDate = "${BUILD_DATE}";
+
+        /// <summary>
+        /// The revision date
+        /// </summary>
+        public const string RevisionDate = " ${REV_DATE}";
+    }
+}

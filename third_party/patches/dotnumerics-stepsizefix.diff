@@ -1,0 +1,109 @@
+Subject: [PATCH] Patch without white space changes.
+
+---
+ src/DotNumerics/ODE/OdeImplicitRungeKutta5.cs           |  9 +++++++--
+ src/DotNumerics/ODE/Radau5/radau5.cs                    | 16 ++++++++++++----
+ src/DotNumerics/Optimization/OptSimplexBoundVariable.cs |  4 +++-
+ 3 files changed, 22 insertions(+), 7 deletions(-)
+
+diff --git a/src/DotNumerics/ODE/OdeImplicitRungeKutta5.cs b/src/DotNumerics/ODE/OdeImplicitRungeKutta5.cs
+--- a/src/DotNumerics/ODE/OdeImplicitRungeKutta5.cs
++++ b/src/DotNumerics/ODE/OdeImplicitRungeKutta5.cs
+@@ -108,6 +108,8 @@ namespace DotNumerics.ODE
+         /// </summary>
+         private int MeMUMAS = 0;
+ 
++        private readonly bool _applyStepSizeFix;
++
+         #endregion
+ 
+         #endregion
+@@ -128,8 +130,11 @@ namespace DotNumerics.ODE
+         /// <param name="function">A function that evaluates the right side of the differential equations.</param>
+         /// <param name="jacobian">A function that evaluates the jacobian matrix.</param>
+         /// <param name="numEquations">The number of differential equations.</param>
+-        public OdeImplicitRungeKutta5(OdeFunction function, OdeJacobian jacobian, int numEquations)
++        /// <param name="applyStepSizeFix"></param>
++        public OdeImplicitRungeKutta5(OdeFunction function, OdeJacobian jacobian, int numEquations,
++            bool applyStepSizeFix)
+         {
++            _applyStepSizeFix = applyStepSizeFix;
+             this.InitializeRungeKuttaClasses();
+ 
+             // C     IOUT        SWITCH FOR CALLING THE SUBROUTINE SOLOUTR:
+@@ -267,8 +272,8 @@ namespace DotNumerics.ODE
+             estrav = new ESTRAV(sol, solb, solh, LINAL);
+             slvrod = new SLVROD(sol, solb, LINAL);
+             slvseu = new SLVSEU(sol, solb, solh, LINAL);
+-            radcor = new RADCOR(decomr, decomc, slvrad, estrad, CONRA5, LINAL);
+             radau5 = new RADAU5(radcor);
++            radcor = new RADCOR(decomr, decomc, slvrad, estrad, CONRA5, LINAL, _applyStepSizeFix);
+             //dr1_radau5 = new DR1_RADAU5(fvpol, jvpol, solout, bbampl, radau5);
+ 
+ 
+diff --git a/src/DotNumerics/ODE/Radau5/radau5.cs b/src/DotNumerics/ODE/Radau5/radau5.cs
+--- a/src/DotNumerics/ODE/Radau5/radau5.cs
++++ b/src/DotNumerics/ODE/Radau5/radau5.cs
+@@ -62,7 +62,7 @@ namespace DotNumerics.ODE.Radau5
+             DECOMC decomc = new DECOMC(decc, decbc, dechc, LINAL);
+             SLVRAD slvrad = new SLVRAD(sol, solc, solb, solbc, solh, solhc, LINAL);
+             ESTRAD estrad = new ESTRAD(sol, solb, solh, LINAL);
+-            RADCOR radcor = new RADCOR(decomr, decomc, slvrad, estrad, CONRA5, LINAL);
++            RADCOR radcor = new RADCOR(decomr, decomc, slvrad, estrad, CONRA5, LINAL, false);
+             #endregion
+             #region Set Dependencies
+             
+@@ -1061,10 +1061,12 @@ namespace DotNumerics.ODE.Radau5
+         #region Common Block: LINAL Declaration
+         
+         CommonBlock _linal;
+-        Oint MLE; Oint MUE; Oint MBJAC; Oint MBB; Oint MDIAG; Oint MDIFF; Oint MBDIAG; 
++        private readonly bool _applyStepSizeFix;
++        Oint MLE; Oint MUE; Oint MBJAC; Oint MBB; Oint MDIAG; Oint MDIFF; Oint MBDIAG;
+         #endregion
+         #endregion
+-        public RADCOR(DECOMR decomr, DECOMC decomc, SLVRAD slvrad, ESTRAD estrad, CommonBlock CONRA5, CommonBlock LINAL)
++        public RADCOR(DECOMR decomr, DECOMC decomc, SLVRAD slvrad, ESTRAD estrad, CommonBlock CONRA5, CommonBlock LINAL,
++            bool applyStepSizeFix)
+         {
+     
+             #region Set Dependencies
+@@ -1088,6 +1090,7 @@ namespace DotNumerics.ODE.Radau5
+             #region Common Block: LINAL Initialization
+             
+             this._linal = LINAL;
++            _applyStepSizeFix = applyStepSizeFix;
+             MLE = LINAL.intData[0];
+             MUE = LINAL.intData[1];
+             MBJAC = LINAL.intData[2];
+@@ -1647,7 +1650,12 @@ namespace DotNumerics.ODE.Radau5
+                 HOPT = Math.Min(H, HNEW);
+                 if (REJECT) HNEW = POSNEG * Math.Min(Math.Abs(HNEW), Math.Abs(H));
+                 REJECT = false;
+-                if ((X + HNEW / QUOT1 - XEND) * POSNEG >= 0.0E0)
++
++                // Workaround: Small reduction of the integration end time, to prevent small rounding errors requiring a tiny final step, which results in and 'STEP SIZE STEP SIZE BECOMES TOO SMALL'-error. Only used when needed.
++                // This fix might need to be re-applied, when a new version of this library will be used.
++                var finalStepTolerance = _applyStepSizeFix ? -1E-8 * XEND : 0.0E0;
++
++                if ((X + HNEW / QUOT1 - XEND) * POSNEG >= finalStepTolerance)
+                 {
+                     H = XEND - X;
+                     LAST = true;
+diff --git a/src/DotNumerics/Optimization/OptSimplexBoundVariable.cs b/src/DotNumerics/Optimization/OptSimplexBoundVariable.cs
+--- a/src/DotNumerics/Optimization/OptSimplexBoundVariable.cs
++++ b/src/DotNumerics/Optimization/OptSimplexBoundVariable.cs
+@@ -253,7 +253,9 @@ namespace DotNumerics.Optimization
+             return cloned;
+         }
+ 
+-        internal OptSimplexBoundVariable GetClon()
++        /// <remarks>Fix for CS0108: 'OptSimplexBoundVariable.GetClon()' hides inherited member 'OptBoundVariable.GetClon()'. Use the new keyword if hiding was intended.
++        ///</remarks>
++        internal new OptSimplexBoundVariable GetClon()
+         {
+             OptSimplexBoundVariable clon = new OptSimplexBoundVariable(this._Name, this._InitialGuess, this._LowerBound, this._UpperBound, this._ScaleFactor);
+             clon.Fixed = this._Fixed;
+-- 
+2.28.0.windows.1
+

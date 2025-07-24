@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0935FD0C-E51F-4687-97FF-D2CA8F9A5BA9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RIVM.ConsExpo.DTO</RootNamespace>
+    <AssemblyName>RIVM.ConsExpo.DTO</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\RIVM.ConsExpo.DTO.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'GenerateSchema|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\GenerateSchema\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;GenerateSchema</DefineConstants>
+    <DocumentationFile>bin\Debug\RIVM.ConsExpo.DTO.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>
+    </NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Acc|AnyCPU'">
+    <OutputPath>bin\Acc\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DataAnnotationsExtensions, Version=5.0.1.27, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataAnnotationsExtensions.5.0.1.27\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.5.0.0\lib\net48\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Calculators\DefaultPopulationProperties.cs" />
+    <Compile Include="Calculators\ExerciseLevels.cs" />
+    <Compile Include="Calculators\InhalationRateCalculationTypes.cs" />
+    <Compile Include="Calculators\InhalationRateCalculatorModel.cs" />
+    <Compile Include="Calculators\MassTransferCoefficientCalculatorInputModel.cs" />
+    <Compile Include="CE4\GeneralParameterNames.cs" />
+    <Compile Include="CE4\DermalParameterNames.cs" />
+    <Compile Include="CE4\OralParameterNames.cs" />
+    <Compile Include="Chesar\ProductCategoryTypes.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Distributions\DistributedAbsorptionEndPoints.cs" />
+    <Compile Include="Distributions\DistributedIntegratedExposureEndPoints.cs" />
+    <Compile Include="Distributions\DistributedExposureEndPointsBase.cs" />
+    <Compile Include="Distributions\DistributedIntegratedEndPoints.cs" />
+    <Compile Include="Distributions\SizeDistributionTypes.cs" />
+    <Compile Include="Distributions\DistributionTypes.cs" />
+    <Compile Include="Distributions\Ran.cs" />
+    <Compile Include="Distributions\SizeBin.cs" />
+    <Compile Include="Distributions\SizeDistribution.cs" />
+    <Compile Include="CE4\InhalationParameterNames.cs" />
+    <Compile Include="CE4\Units.cs" />
+    <Compile Include="Entities\BatchAssessmentModel.cs" />
+    <Compile Include="Entities\BatchLineModel.cs" />
+    <Compile Include="Entities\BatchSubstanceModel.cs" />
+    <Compile Include="Entities\NonParametricSizeBin.cs" />
+    <Compile Include="Entities\NonParametricSizeDistribution.cs" />
+    <Compile Include="Entities\DefaultPopulationDatabase.cs" />
+    <Compile Include="Entities\DefaultPopulation.cs" />
+    <Compile Include="Exceptions\ODEIntegrationStepSizeTooSmallException.cs" />
+    <Compile Include="Exceptions\ODEIntegrationException.cs" />
+    <Compile Include="Exceptions\TooManyIterationsException.cs" />
+    <Compile Include="Extensions\BoolExtensions.cs" />
+    <Compile Include="Extensions\DoubleExtensions.cs" />
+    <Compile Include="Extensions\IPhysicalQuantityExtensions.cs" />
+    <Compile Include="Factsheets\FactsheetPreviewData.cs" />
+    <Compile Include="Factsheets\FactsheetPreviewValue.cs" />
+    <Compile Include="Factsheets\InhalationQuality.cs" />
+    <Compile Include="Factsheets\DermalQuality.cs" />
+    <Compile Include="Factsheets\OralQuality.cs" />
+    <Compile Include="Factsheets\GeneralQuality.cs" />
+    <Compile Include="Attributes\BatchLineOverridableAttribute.cs" />
+    <Compile Include="Helpers\CasNumberChecksum.cs" />
+    <Compile Include="Helpers\SampleHelper.cs" />
+    <Compile Include="Helpers\UniqueNameHelper.cs" />
+    <Compile Include="Lists\ListItem.cs" />
+    <Compile Include="Helpers\CE4Line.cs" />
+    <Compile Include="Helpers\CE4LineReader.cs" />
+    <Compile Include="Helpers\ParameterConversion.cs" />
+    <Compile Include="Models\BatchAssessmentSummary.cs" />
+    <Compile Include="Models\ModelParameterHelpers.cs" />
+    <Compile Include="Models\SizeDistributionSummary.cs" />
+    <Compile Include="Output\BatchResult.cs" />
+    <Compile Include="Extensions\DoseExtensions.cs" />
+    <Compile Include="Output\DoseMeasureType.cs" />
+    <Compile Include="Distributions\Distribution.cs" />
+    <Compile Include="Entities\SimulationResultsModel.cs" />
+    <Compile Include="Entities\UserModel.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\ValidationExtensions.cs" />
+    <Compile Include="Helpers\DateTimeHelper.cs" />
+    <Compile Include="Helpers\Utf8StringWriter.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\ExceptionHelper.cs" />
+    <Compile Include="Helpers\ModelHelpers.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="Entities\InhalationAbsorptionModel.cs" />
+    <Compile Include="Output\Bin.cs" />
+    <Compile Include="Distributions\DistributedDermalEndPoints.cs" />
+    <Compile Include="Distributions\DistributedDermalExposureEndPoints.cs" />
+    <Compile Include="Distributions\DistributedEndPoints.cs" />
+    <Compile Include="Distributions\DistributedInhalationEndPoints.cs" />
+    <Compile Include="Distributions\DistributedInhalationExposureEndPoints.cs" />
+    <Compile Include="Distributions\DistributedOralEndPoints.cs" />
+    <Compile Include="Distributions\DistributedOralExposureEndPoints.cs" />
+    <Compile Include="Output\InhalationExposureOutcomeReEntry.cs" />
+    <Compile Include="Output\ScaleType.cs" />
+    <Compile Include="Output\Outcomes.cs" />
+    <Compile Include="Output\EndPoint.cs" />
+    <Compile Include="Output\AbsorptionOutcomeBase.cs" />
+    <Compile Include="Entities\OralAbsorptionModel.cs" />
+    <Compile Include="Entities\OralExposureModel.cs" />
+    <Compile Include="Entities\DermalExposureModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Output\DermalAbsorptionOutcome.cs" />
+    <Compile Include="Output\DermalTimeSeries.cs" />
+    <Compile Include="Output\EndPointResults.cs" />
+    <Compile Include="Output\IntegratedExposureOutcome.cs" />
+    <Compile Include="Output\IntegratedAbsorptionOutcome.cs" />
+    <Compile Include="Output\OralTimeSeries.cs" />
+    <Compile Include="Output\ExposureOutcomeBase.cs" />
+    <Compile Include="Output\RouteResults.cs" />
+    <Compile Include="Output\RouteTypes.cs" />
+    <Compile Include="Output\Statistics.cs" />
+    <Compile Include="Parameters\Dilution.cs" />
+    <Compile Include="PhysicalQuantities\DailyDuration.cs" />
+    <Compile Include="PhysicalQuantities\DensitySolid.cs" />
+    <Compile Include="PhysicalQuantities\DiameterStandardDeviation.cs" />
+    <Compile Include="PhysicalQuantities\DiffusionCoefficientForEmission.cs" />
+    <Compile Include="PhysicalQuantities\DistributablePhysicalQuantity.cs" />
+    <Compile Include="PhysicalQuantities\Duration.cs" />
+    <Compile Include="PhysicalQuantities\EmissionDurationEvaporation.cs" />
+    <Compile Include="PhysicalQuantities\EmissionDurationReEntry.cs" />
+    <Compile Include="PhysicalQuantities\ExposureDuration.cs" />
+    <Compile Include="PhysicalQuantities\Factor.cs" />
+    <Compile Include="PhysicalQuantities\ThicknessForEmission.cs" />
+    <Compile Include="Output\TimeInterval.cs" />
+    <Compile Include="PhysicalQuantities\WeightFractionSubstanceForEmission.cs" />
+    <Compile Include="PhysicalQuantities\FractionBase.cs" />
+    <Compile Include="PhysicalQuantities\IDistributablePhysicalQuantityBase.cs" />
+    <Compile Include="PhysicalQuantities\IPhysicalQuantityBase.cs" />
+    <Compile Include="PhysicalQuantities\Kow.cs" />
+    <Compile Include="PhysicalQuantities\ProductAirPartitionCoefficient.cs" />
+    <Compile Include="PhysicalQuantities\StorageTime.cs" />
+    <Compile Include="PhysicalQuantities\IntermediateDuration.cs" />
+    <Compile Include="PhysicalQuantities\Fraction.cs" />
+    <Compile Include="PhysicalQuantities\FixedDiameter.cs" />
+    <Compile Include="PhysicalQuantities\IDistributablePhysicalQuantity.cs" />
+    <Compile Include="PhysicalQuantities\ContactAreaPackaging.cs" />
+    <Compile Include="PhysicalQuantities\ProductAmountPackaging.cs" />
+    <Compile Include="PhysicalQuantities\IPhysicalQuantity.cs" />
+    <Compile Include="PhysicalQuantities\MassRatePackaging.cs" />
+    <Compile Include="PhysicalQuantities\SkinPermeability.cs" />
+    <Compile Include="PhysicalQuantities\MassTransferCoefficient.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhysicalQuantities\SubstanceConcentrationPackaging.cs" />
+    <Compile Include="PhysicalQuantities\Velocity.cs" />
+    <Compile Include="PhysicalQuantities\PhysicalQuantity.cs" />
+    <Compile Include="PhysicalQuantities\SprayDuration.cs" />
+    <Compile Include="PhysicalQuantities\ApplicationDuration.cs" />
+    <Compile Include="PhysicalQuantities\IngestionRate.cs" />
+    <Compile Include="PhysicalQuantities\ContactRate.cs" />
+    <Compile Include="PhysicalQuantities\MassGenerationRate.cs" />
+    <Compile Include="PhysicalQuantities\DensityNonVolatile.cs" />
+    <Compile Include="PhysicalQuantities\SubstanceConcentration.cs" />
+    <Compile Include="PhysicalQuantities\AirConcentration.cs" />
+    <Compile Include="PhysicalQuantities\ExposedArea.cs" />
+    <Compile Include="PhysicalQuantities\ReleaseArea.cs" />
+    <Compile Include="PhysicalQuantities\RubbingContactArea.cs" />
+    <Compile Include="PhysicalQuantities\ContactAreaMouthing.cs" />
+    <Compile Include="PhysicalQuantities\TransferCoefficient.cs" />
+    <Compile Include="PhysicalQuantities\DiffusionCoefficient.cs" />
+    <Compile Include="PhysicalQuantities\ProductAmount.cs" />
+    <Compile Include="PhysicalQuantities\SurfaceRate.cs" />
+    <Compile Include="PhysicalQuantities\Thickness.cs" />
+    <Compile Include="PhysicalQuantities\Height.cs" />
+    <Compile Include="PhysicalQuantities\Diameter.cs" />
+    <Compile Include="PhysicalQuantities\MigrationRate.cs" />
+    <Compile Include="PhysicalQuantities\Length.cs" />
+    <Compile Include="PhysicalQuantities\ReleaseDuration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhysicalQuantities\CloudVolume.cs" />
+    <Compile Include="PhysicalQuantities\Volume.cs" />
+    <Compile Include="PhysicalUnits\DailyDurationUnits.cs" />
+    <Compile Include="PhysicalUnits\DurationUnits.cs" />
+    <Compile Include="PhysicalUnits\MigrationRateUnits.cs" />
+    <Compile Include="Output\TimeSeries.cs" />
+    <Compile Include="PhysicalUnits\LengthUnits.cs" />
+    <Compile Include="PhysicalUnits\AreaUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhysicalUnits\FractionUnits.cs" />
+    <Compile Include="PhysicalUnits\FactorUnits.cs" />
+    <Compile Include="PhysicalUnits\UnitBase.cs" />
+    <Compile Include="PhysicalUnits\VelocityUnits.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\VersionInfo.cs" />
+    <Compile Include="Submodels\InhalationAbsorptionSubmodelTypes.cs" />
+    <Compile Include="Submodels\OralExposureModelTypes.cs" />
+    <Compile Include="Submodels\InhalationExposureReleasedAreaTypes.cs" />
+    <Compile Include="Submodels\InhalationExposureModelTypes.cs" />
+    <Compile Include="Submodels\OralAbsorptionSubmodelTypes.cs" />
+    <Compile Include="Submodels\OralExposureSubmodelTypes.cs" />
+    <Compile Include="Output\OralAbsorptionOutcome.cs" />
+    <Compile Include="Output\OralExposureOutcome.cs" />
+    <Compile Include="PhysicalQuantities\BodyWeight.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhysicalQuantities\AreaDensity.cs" />
+    <Compile Include="PhysicalQuantities\Area.cs" />
+    <Compile Include="PhysicalUnits\AreaDensityUnits.cs" />
+    <Compile Include="PhysicalUnits\SurfaceRateUnits.cs" />
+    <Compile Include="Output\InhalationTimeSeries.cs" />
+    <Compile Include="Output\SimulationResults.cs" />
+    <Compile Include="Output\InhalationAbsorptionOutcome.cs" />
+    <Compile Include="Output\InhalationExposureOutcome.cs" />
+    <Compile Include="Output\Histogram.cs" />
+    <Compile Include="Entities\InhalationExposureModel.cs" />
+    <Compile Include="Output\RouteOutcomes.cs" />
+    <Compile Include="Output\DermalExposureOutcome.cs" />
+    <Compile Include="Output\SensitivityAnalysis.cs" />
+    <Compile Include="Settings\SensitivityAnalysisSettings.cs" />
+    <Compile Include="Settings\TimeSeriesGraphSettings.cs" />
+    <Compile Include="Output\SensitivityAnalysisPoint.cs" />
+    <Compile Include="Output\TimeSeriesPoint.cs" />
+    <Compile Include="Output\Dose.cs" />
+    <Compile Include="PhysicalQuantities\EmissionDuration.cs" />
+    <Compile Include="PhysicalQuantities\Time.cs" />
+    <Compile Include="PhysicalQuantities\VolumeRate.cs" />
+    <Compile Include="PhysicalQuantities\Density.cs" />
+    <Compile Include="Models\ModelParameters.cs" />
+    <Compile Include="PhysicalQuantities\Rate.cs" />
+    <Compile Include="PhysicalQuantities\RoomVolume.cs" />
+    <Compile Include="PhysicalQuantities\MassRate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhysicalUnits\PhysicalConstants.cs" />
+    <Compile Include="Output\DoseUnits.cs" />
+    <Compile Include="PhysicalUnits\TimeUnits.cs" />
+    <Compile Include="PhysicalUnits\VolumeRateUnits.cs" />
+    <Compile Include="PhysicalUnits\DensityUnits.cs" />
+    <Compile Include="PhysicalUnits\VolumeUnits.cs" />
+    <Compile Include="PhysicalUnits\RateUnits.cs" />
+    <Compile Include="PhysicalUnits\MassRateUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Submodels\DermalAbsorptionSubmodelTypes.cs" />
+    <Compile Include="Submodels\InhalationExposureSubmodelTypes.cs" />
+    <Compile Include="Submodels\DermalExposureSubmodelTypes.cs" />
+    <Compile Include="Entities\DermalAbsorptionModel.cs" />
+    <Compile Include="Entities\AssessmentModel.cs" />
+    <Compile Include="Entities\ProductModel.cs" />
+    <Compile Include="Entities\PopulationModel.cs" />
+    <Compile Include="Entities\ScenarioModel.cs" />
+    <Compile Include="Entities\SubstanceModel.cs" />
+    <Compile Include="PhysicalQuantities\Frequency.cs" />
+    <Compile Include="PhysicalQuantities\PartitionCoefficient.cs" />
+    <Compile Include="PhysicalQuantities\MolecularWeight.cs" />
+    <Compile Include="PhysicalQuantities\Temperature.cs" />
+    <Compile Include="PhysicalQuantities\Mass.cs" />
+    <Compile Include="PhysicalQuantities\Pressure.cs" />
+    <Compile Include="PhysicalUnits\TemperatureUnits.cs" />
+    <Compile Include="PhysicalUnits\ConversionFactors.cs" />
+    <Compile Include="PhysicalUnits\DimensionLess.cs" />
+    <Compile Include="PhysicalUnits\FrequencyUnits.cs" />
+    <Compile Include="PhysicalUnits\MolecularWeightUnits.cs" />
+    <Compile Include="PhysicalUnits\MassUnits.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PhysicalUnits\PressureUnits.cs" />
+    <Compile Include="NameValuePairs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>echo Substituting GIT Commit date and Revision number in VersionInfo.cs.
+call "$(SolutionDir)SubGitRev" "$(ProjectDir)." "$(ProjectDir)Properties\VersionInfo.cst" "$(ProjectDir)Properties\VersionInfo.cs"
+
+
+echo Substituting GIT Commit date and Revision number in AssemblyInfo.cs.
+call "$(SolutionDir)SubGitRev" "$(ProjectDir)." "$(ProjectDir)Properties\AssemblyInfo.cst" "$(ProjectDir)Properties\AssemblyInfo.cs"
+
+</PreBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
